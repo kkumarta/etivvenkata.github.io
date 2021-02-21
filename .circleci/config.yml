@@ -13,6 +13,7 @@ jobs:
       - run: "sudo apt-get update -y"
       - run: "sudo apt-get install build-essential"
       - run: "sudo apt-get install git"
+      - run: "git clone https://github.com/etivvenkata/etivvenkata.github.io.git ;"
       
       - run: "cd /home/circleci/project/etivvenkata.github.io"
       - run: "g++ giggle.c -o giggle ;"
