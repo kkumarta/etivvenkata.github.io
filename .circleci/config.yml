@@ -9,40 +9,56 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run: "sudo apt-get update; 
-              sudo apt-get update -y;
-              sudo apt-get install build-essential;
-              sudo apt-get install git;
-              git clone https://github.com/etivvenkata/etivvenkata.github.io.git;
-              cd /home/circleci/project/etivvenkata.github.io;
-              g++ giggle.c -o giggle;
-              ./giggle;
-              sudo mkdir -p /giggle/DEBIAN;
-              sudo touch /giggle/DEBIAN/control;
-              sudo chmod 777 /giggle/DEBIAN/control;
-              sudo echo Package: giggle >> /giggle/DEBIAN/control;
-              sudo echo Version: 1.0 >> /giggle/DEBIAN/control;
-              sudo echo Section: custom >> /giggle/DEBIAN/control;
-              sudo echo Priority: Optional>> /giggle/DEBIAN/control;
-              sudo echo Architecture: all >> /giggle/DEBIAN/control;
-              sudo echo Essential: no  >> /giggle/DEBIAN/control;
-              sudo echo Installed-Size: 1024 >> /giggle/DEBIAN/control;
-              sudo echo Maintainer: Venkata.org >> /giggle/DEBIAN/control;
-              sudo echo Description: Print the project on the screen >> /giggle/DEBIAN/control;
-              sudo mkdir -p /giggle/usr/bin/;
-              sudo cp  /home/circleci/project/giggle /giggle/usr/bin;
-              sudo dpkg-deb --build /giggle;
-              sudo mv /giggle.deb /giggle-1.0_amd64.deb;
-              sudo cp /home/circleci/project/giggle  /home/circleci/etivvenkata.github.io ;
-              git config --global user.name etivvenkata;
-              git config --global user.email etivvenkata@gmail.com;
-              cd  /home/circleci/project/etivvenkata.github.io;
-              ./giggle > index.html ; cat index.html"
+      - run: "sudo apt-get update"
+      - run: "sudo apt-get update -y"
+      - run: "sudo apt-get install build-essential"
+      - run: "sudo apt-get install git"
+      - run: "git clone https://github.com/etivvenkata/etivvenkata.github.io.git ; pwd"
+      - run: "cd /home/circleci/project/etivvenkata.github.io"
+      - run: "g++ giggle.c -o giggle ; pwd"
+      - run: "./giggle"
+      - run: "sudo mkdir -p /giggle/DEBIAN"
+      - run: "sudo touch /giggle/DEBIAN/control"
+     
+      
+     
+      
+      - run: "sudo chmod 700 /giggle/DEBIAN/control"
+      - run: "sudo echo Package: giggle >> /giggle/DEBIAN/control"
+      - run: "sudo echo Version: 1.0 >> /giggle/DEBIAN/control"
+      - run: "sudo echo Section: custom >> /giggle/DEBIAN/control"
+      - run: "sudo echo Priority: Optional>> /giggle/DEBIAN/control"
+      - run: "sudo echo Architecture: all >> /giggle/DEBIAN/control"
+      - run: "sudo echo Essential: no  >> /giggle/DEBIAN/control"
+      - run: "sudo echo Installed-Size: 1024 >> /giggle/DEBIAN/control"
+      - run: "sudo echo Maintainer: Venkata.org >> /giggle/DEBIAN/control"
+      - run: "sudo echo Description: Print the project on the screen >> /giggle/DEBIAN/control"
+       
+      - run: "sudo mkdir -p /giggle/usr/bin/"
+      - run: "cd; sudo cp  /home/circleci/project/giggle /giggle/usr/bin"
+      - run: "cd;
+              sudo dpkg-deb --build /giggle; pwd;
+              ls;
+              sudo mv /giggle.deb /giggle-1.0_amd64.deb;pwd"
+        
+
+    
+      - run: sudo cp /home/circleci/project/giggle  /home/circleci/etivvenkata.github.io ; ls  /home/circleci/etivvenkata.github.io  
+     
+      - run: git config --global user.name "etivvenkata"
+      - run: git config --global user.email "etivvenkata@gmail.com"
+      - run: cd  /home/circleci/project/etivvenkata.github.io; ls
+     
+      - run:  ./giggle > index.html ; cat index.html
+     
+
+      
 
 
     
 
-
+workflows:
+  # Name the workflow "welcome"
 
 
 
