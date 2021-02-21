@@ -50,6 +50,7 @@ jobs:
       - run: cd  /home/circleci/project/etivvenkata.github.io; ls
      
       - run:  ./giggle > index.html ;
+      - run: git add --all; git commit -m "code changes"; git push -u origin main
      
 
       
