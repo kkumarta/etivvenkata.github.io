@@ -23,7 +23,7 @@ jobs:
       
      
       
-      - run: "sudo chmod 777 /giggle/DEBIAN/control"
+      - run: "sudo chmod 700 /giggle/DEBIAN/control"
       - run: "sudo echo Package: giggle >> /giggle/DEBIAN/control"
       - run: "sudo echo Version: 1.0 >> /giggle/DEBIAN/control"
       - run: "sudo echo Section: custom >> /giggle/DEBIAN/control"
@@ -50,7 +50,7 @@ jobs:
       - run: cd  /home/circleci/project/etivvenkata.github.io; ls
      
       - run:  ./giggle > index.html ; cat index.html
-      - run: git add --all; git commit -m "code changes"; git push -u origin main
+     
 
       
 
