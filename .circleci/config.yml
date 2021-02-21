@@ -43,14 +43,14 @@ jobs:
         
 
     
-      - run: sudo cp /home/circleci/project/giggle  /home/circleci/etivvenkata.github.io ; ls  /home/circleci/etivvenkata.github.io  
+      - run: sudo cp /home/circleci/project/giggle  /home/circleci/etivvenkata.github.io ;   
      
       - run: git config --global user.name "etivvenkata"
       - run: git config --global user.email "etivvenkata@gmail.com"
       - run: cd  /home/circleci/project/etivvenkata.github.io; ls
      
       - run:  ./giggle > index.html ;
-      - run: git add --all; git commit -m "code changes"; git push -u origin main
+      
      
 
       
