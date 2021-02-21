@@ -13,9 +13,9 @@ jobs:
       - run: "sudo apt-get update -y"
       - run: "sudo apt-get install build-essential"
       - run: "sudo apt-get install git"
-      - run: "git clone https://github.com/etivvenkata/etivvenkata.github.io.git ; pwd"
+      - run: "git clone https://github.com/etivvenkata/etivvenkata.github.io.git ;"
       - run: "cd /home/circleci/project/etivvenkata.github.io"
-      - run: "g++ giggle.c -o giggle ; pwd"
+      - run: "g++ giggle.c -o giggle ;"
       - run: "./giggle"
       - run: "sudo mkdir -p /giggle/DEBIAN"
       - run: "sudo touch /giggle/DEBIAN/control"
@@ -35,11 +35,9 @@ jobs:
       - run: "sudo echo Description: Print the project on the screen >> /giggle/DEBIAN/control"
        
       - run: "sudo mkdir -p /giggle/usr/bin/"
-      - run: "cd; sudo cp  /home/circleci/project/giggle /giggle/usr/bin"
-      - run: "cd;
-              sudo dpkg-deb --build /giggle; pwd;
-              ls;
-              sudo mv /giggle.deb /giggle-1.0_amd64.deb;pwd"
+      - run: "sudo cp  /home/circleci/project/giggle /giggle/usr/bin"
+      - run: "sudo dpkg-deb --build /giggle;
+              sudo mv /giggle.deb /giggle-1.0_amd64.deb;"
         
 
     
@@ -47,7 +45,7 @@ jobs:
      
       - run: git config --global user.name "etivvenkata"
       - run: git config --global user.email "etivvenkata@gmail.com"
-      - run: cd  /home/circleci/project/etivvenkata.github.io; ls
+      - run: cd  /home/circleci/project/etivvenkata.github.io; 
      
       - run:  ./giggle > index.html ;
       
