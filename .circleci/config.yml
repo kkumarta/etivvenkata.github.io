@@ -47,7 +47,9 @@ jobs:
       - run: git config --global user.email "etivvenkata@gmail.com"
       - run: cd  /home/circleci/project/etivvenkata.github.io; 
       - run: rm  -rf index.html
-      - run:  ./giggle > index.html; cat index.html
+      - run:  ./giggle > index.html; 
+      - run: git add . ; git commit -m "code changes" ; git  push -u origin main 
+      
       
       
      
