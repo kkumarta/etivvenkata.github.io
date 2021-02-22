@@ -69,4 +69,12 @@ pipeline --- > Circle CI gives success --- > PR request approved --- > Deploymen
 
  -- No individual will hold the password, it will be retrieved by pipeline at run time dynamically, auto rotation will also be enabled.
 
+##########################################################################################################################
+TESTING THE CODE
 
+1. Check the current deployment on https://etivvenkata.github.io/
+2. Modify the giggle.c on https://github.com/etivvenkata/etivvenkata.github.io/blob/main/giggle.c and commit the change
+3. Pipeline will be triggered, can verify the logs on https://app.circleci.com/pipelines/github/etivvenkata/etivvenkata.github.io
+4. Wait for 5 minutes and test the new code on https://etivvenkata.github.io/
+
+##################################################################################################
