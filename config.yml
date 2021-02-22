@@ -1,0 +1,69 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/go:1.13
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run: "sudo apt-get update"
+      - run: "sudo apt-get update -y"
+      - run: "sudo apt-get install build-essential"
+      - run: "sudo apt-get install git"
+      - run: "git clone https://github.com/etivvenkata/etivvenkata.github.io.git ;"
+      
+      - run: "cd /home/circleci/project/etivvenkata.github.io"
+      - run: "g++ giggle.c -o giggle ;"
+      - run: "./giggle"
+      - run: "sudo mkdir -p /giggle/DEBIAN"
+      - run: "sudo touch /giggle/DEBIAN/control"
+     
+      
+     
+      
+      - run: "sudo chmod 777 /giggle/DEBIAN/control"
+      - run: "sudo echo Package: giggle >> /giggle/DEBIAN/control"
+      - run: "sudo echo Version: 1.0 >> /giggle/DEBIAN/control"
+      - run: "sudo echo Section: custom >> /giggle/DEBIAN/control"
+      - run: "sudo echo Priority: Optional>> /giggle/DEBIAN/control"
+      - run: "sudo echo Architecture: all >> /giggle/DEBIAN/control"
+      - run: "sudo echo Essential: no  >> /giggle/DEBIAN/control"
+      - run: "sudo echo Installed-Size: 1024 >> /giggle/DEBIAN/control"
+      - run: "sudo echo Maintainer: Venkata.org >> /giggle/DEBIAN/control"
+      - run: "sudo echo Description: Print the project on the screen >> /giggle/DEBIAN/control"
+       
+      - run: "sudo mkdir -p /giggle/usr/bin/"
+      - run: "sudo cp  /home/circleci/project/giggle /giggle/usr/bin"
+      - run: "sudo dpkg-deb --build /giggle;
+              sudo mv /giggle.deb /giggle-1.0_amd64.deb;"
+        
+
+    
+      - run: sudo cp /home/circleci/project/giggle  /home/circleci/etivvenkata.github.io ;   
+     
+      - run: git config --global user.name "etivvenkata"
+      - run: git config --global user.email "etivvenkata@gmail.com"
+      - run: cd  /home/circleci/project/etivvenkata.github.io; 
+      
+      - run:  ./giggle > index.html; 
+      - run: git add . ; git commit -m "[skip ci] code changes" ; git push -u origin main
+      
+      
+      
+      
+      
+     
+
+      
+
+
+    
+
+workflows:
+  # Name the workflow "welcome"
+
+
+
